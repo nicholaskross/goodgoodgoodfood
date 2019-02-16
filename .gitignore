@@ -2,6 +2,9 @@
 /env
 /venv
 
+# Private config file
+backend/config.json
+
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
