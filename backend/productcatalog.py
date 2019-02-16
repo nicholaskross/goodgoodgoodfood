@@ -4,10 +4,8 @@ from backend.product import Product
 
 class ProductCatalog:
 
-    def 
-
     def ensure_search(self, query:str):
-
+        pass
 
     def search_query(self, query:str):
         query = query.lower().strip()
