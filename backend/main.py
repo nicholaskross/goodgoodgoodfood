@@ -19,7 +19,7 @@ import os
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
 # called `app` in `main.py`.
-from backend.func_get_charity import get_charities_from_cart
+from backend.func_get_charity import get_charities_from_cart, get_charities
 from backend.productcatalog import ProductCatalog
 from backend.wegmans_api import WegmansAPI
 
@@ -54,7 +54,11 @@ def similar():
 
 @app.route("/charity", methods=["GET"])
 def charity_recommend():
-    skus: str = request.args.get("skus")
-    sku_arr = [int(sku) for sku in skus.split(",")]
+    search: str = request.args.get("search")
+    if search:
+        return jsonify([charity.to_dict() for charity in get_charities(search=search)])
+    else:
+        skus: str = request.args.get("skus")
+        sku_arr = [int(sku) for sku in skus.split(",")]
 
-    return jsonify([charity.to_dict() for charity in get_charities_from_cart(sku_arr, prod_cat)])
+        return jsonify([charity.to_dict() for charity in get_charities_from_cart(sku_arr, prod_cat)])
