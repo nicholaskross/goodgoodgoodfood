@@ -7,13 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  cart: [];
-
+  cart: string[];
   constructor() { }
 
   ngOnInit() {
-    this.cart = [1,2,3,4,5];
-
+    this.cart = ['1','2','3','4', '5']
   }
 
 }

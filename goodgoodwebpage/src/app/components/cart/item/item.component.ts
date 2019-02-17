@@ -7,11 +7,12 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ItemComponent implements OnInit {
 
-  @Input() itemName: number;
+  @Input() itemName: string;
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.itemName)
   }
 
 }
