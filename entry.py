@@ -1,12 +1,25 @@
 from backend.main import app as backend
 import os
 
-from flask import Flask
+from flask import Flask, send_from_directory, send_file
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
 app.register_blueprint(backend)
+
+dist_base = "goodgoodwebpage/dist/goodgoodwebpage"
+
+
+@app.route("/")
+def send_index():
+    return send_file(dist_base + "/index.html")
+
+
+@app.route("/<path:path>")
+def send_static(path):
+    return send_from_directory(dist_base, path)
+
 
 if __name__ == '__main__':
     port = 8080

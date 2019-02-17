@@ -17,6 +17,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {CartComponent} from "./components/cart/cart.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { CharitiesComponent } from './components/charities/charities.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import {HttpClientModule} from "@angular/common/http";
     SearchFilterComponent,
     NavbarComponent,
     CartComponent,
+    CharitiesComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
