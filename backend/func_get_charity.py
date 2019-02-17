@@ -31,7 +31,7 @@ def label_categories(food: Product):
 
 
 def get_charities(category: int = None, search: str = None):
-    charityParams = {"app_id": "adcbebfd", "app_key": "68bbeba05b4dd80d57ca19d79965e545", "pageSize": 10,
+    charityParams = {"app_id": "adcbebfd", "app_key": "68bbeba05b4dd80d57ca19d79965e545", "pageSize": 50,
                      "sort": "RELEVANCE" if search else "RATING"}
 
     if category:
@@ -42,7 +42,7 @@ def get_charities(category: int = None, search: str = None):
 
     charityData = requests.get("https://api.data.charitynavigator.org/v2/Organizations/", params=charityParams).json()
 
-    return [Charity(c["charityName"], c["websiteURL"]) for c in charityData]
+    return [Charity(c["charityName"], c["websiteURL"]) for c in charityData if c["websiteURL"]]
 
 
 def get_charities_from_cart(shopping_cart: List[int], pc: ProductCatalog):
