@@ -1,1 +1,11 @@
-<input class="form-control" type="text" [formControl]="searchString">
+<form>
+  <mat-form-field>
+    <input matInput placeholder="Search for Items" type="text" [formControl]="searchString">
+  </mat-form-field>
+</form>
+<mat-list>
+  <mat-list-item *ngFor="let result of this.searchResults">
+  {{result}}
+  <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-list>

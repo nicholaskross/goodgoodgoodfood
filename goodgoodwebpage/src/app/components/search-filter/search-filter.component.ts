@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl} from "@angular/forms";
 import {debounceTime, distinctUntilChanged} from "rxjs/operators";
-
+import {SearchService} from "../../services/search.service";
 
 @Component({
   selector: 'app-search-filter',
@@ -14,9 +14,10 @@ export class SearchFilterComponent implements OnInit {
     ])
   });
 
+  searchResults;
 
 
-  constructor() { }
+  constructor(private searchService: SearchService) { }
 
   ngOnInit() {
 
@@ -25,8 +26,18 @@ export class SearchFilterComponent implements OnInit {
         debounceTime(400),
         distinctUntilChanged()
       ).subscribe((value:string) => {
-        console.log(value)
-    })
+      if (value !== '') {
+        this.searchService.itemSearch(value).subscribe(
+          data => {
+            this.searchResults = data;
+            console.log(this.searchResults)
+          },
+          error => {
+            console.log(error)
+          }
+        )
+      }
+    });
   }
 
   get searchString(){

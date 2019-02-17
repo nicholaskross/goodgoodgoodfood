@@ -8,7 +8,8 @@ import {
   MatDividerModule,
   MatExpansionModule, MatFormFieldModule,
   MatGridListModule, MatInputModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatListModule
 } from "@angular/material";
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SearchFilterComponent } from './components/search-filter/search-filter.component';
@@ -16,6 +17,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {CartComponent} from "./components/cart/cart.component";
 import {ItemComponent} from "./components/cart/item/item.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -35,15 +37,12 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     MatCardModule,
     MatDividerModule,
     MatGridListModule,
-    BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-    MatDividerModule,
-    MatGridListModule
+    MatListModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
