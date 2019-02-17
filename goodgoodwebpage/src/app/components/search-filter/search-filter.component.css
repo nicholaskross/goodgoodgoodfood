@@ -1,0 +1,16 @@
+.example-additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em; }
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  margin-left: 35.5%;
+  margin-right: auto;
+  margin-top: 5%; }
+
+.example-full-width {
+  width: 100%; }
+
+/*# sourceMappingURL=search-filter.component.css.map */
