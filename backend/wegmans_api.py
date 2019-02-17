@@ -46,7 +46,10 @@ class WegmansAPI(GroceryAPI):
 
         return tpexec.submit(process_detail)
 
-    def get_search(self, query: str) -> Future:
+    def get_search(self, query: str, cache: Dict[int, Product] = None) -> Future:
+        if cache is None:
+            cache = dict()
+
         d = self.default_params.copy()
         d["query"] = query
         resp: Future = self.sess.get("https://api.wegmans.io/products/search", params=d)
@@ -59,10 +62,8 @@ class WegmansAPI(GroceryAPI):
             else:
                 skus = []
 
-
-
-            products_futures = [self.get_sku(sku) for sku in skus]
-            products = [fut.result() for fut in products_futures]
+            products_futures = [self.get_sku(sku) if sku not in cache else cache[sku] for sku in skus]
+            products = [fut.result() if isinstance(fut, Future) else fut for fut in products_futures]
 
             return products
 
@@ -80,7 +81,3 @@ class WegmansAPI(GroceryAPI):
             "api-version": "2018-10-18"
         }
 
-
-t = WegmansAPI()
-# a = t.get_sku(44764).result()
-b = t.get_search("refried beans").result()

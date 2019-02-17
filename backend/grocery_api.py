@@ -11,5 +11,5 @@ class GroceryAPI(abc.ABC):
         raise NotImplemented
 
     @abc.abstractmethod
-    def get_search(self, query: str) -> Future:
+    def get_search(self, query: str, cache=None) -> Future:
         raise NotImplemented
