@@ -1,5 +1,9 @@
 <mat-list>
-  <mat-list-item *ngFor="let item of cart">
+  <mat-list-item *ngFor="let item of cart; let i = index">
     {{item.name}}
+    <button mat-raised-button (click)="swapForGeneric(i)">swap for generic</button>
+    <span *ngIf="genericprods[item.sku]">
+      {{genericprods[item.sku].name}}
+    </span>
   </mat-list-item>
 </mat-list>

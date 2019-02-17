@@ -19,4 +19,9 @@ export class SearchService {
     //may need to spit and add , to this string??
     return this.http.get(`${environment.baseURL}/charity?skus=${skuString}`);
   }
+
+  getGeneric(searchString: string){
+    console.log(searchString);
+    return this.http.get(`${environment.baseURL}/similar?sku=${searchString}`)
+  }
 }
