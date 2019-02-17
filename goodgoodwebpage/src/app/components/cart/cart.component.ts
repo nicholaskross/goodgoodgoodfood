@@ -13,29 +13,34 @@ export class CartComponent implements OnInit {
   @Input() cart;
   @Input() genericprods;
 
-  constructor(private searchService: SearchService, private charityService: CharityService) { }
+  constructor(private searchService: SearchService, private charityService: CharityService) {
+  }
 
   ngOnInit() {
   }
 
-  swapForGeneric(index){
+  swapForGeneric(index) {
     let sku = this.cart[index].sku;
-    if(this.genericprods[sku]){
+    if (this.genericprods[sku]) {
       let newprod = this.genericprods[sku];
       this.money_saved[index] = this.cart[index].price - newprod.price;
       this.cart[index] = newprod;
-      this.charityService.changeAmountedDonated(this.money_saved);
+      let total = 0;
+      for (let x of this.money_saved) {
+        total += x
+      }
+      this.charityService.changeAmountedDonated(total);
       this.charityService.changeCart(this.createSKUString());
 
     }
   }
-  createSKUString(){
+
+  createSKUString() {
     let skuCSV = '';
-    for(let x = 0; x < this.cart.length; x++){
-      if(x == 0){
+    for (let x = 0; x < this.cart.length; x++) {
+      if (x == 0) {
         skuCSV = this.cart[x].sku
-      }
-      else{
+      } else {
         skuCSV += ',' + this.cart[x].sku
       }
     }

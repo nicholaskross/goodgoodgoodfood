@@ -59,6 +59,6 @@ def charity_recommend():
         return jsonify([charity.to_dict() for charity in get_charities(search=search)])
     else:
         skus: str = request.args.get("skus")
-        sku_arr = [int(sku) for sku in skus.split(",")]
+        sku_arr = [int(sku) for sku in skus.split(",")] if skus and len(skus) > 0 else []
 
         return jsonify([charity.to_dict() for charity in get_charities_from_cart(sku_arr, prod_cat)])

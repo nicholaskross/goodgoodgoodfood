@@ -12,10 +12,15 @@ export class CharityService {
   cartItems$ = this.cartItemsSource.asObservable();
   moneyDonated$ = this.moneyDonatedSource.asObservable();
 
+  cartItems = [];
+  moneyDonated = 0;
+
   changeCart(cart){
+    this.cartItems = cart;
     this.cartItemsSource.next(cart)
   }
   changeAmountedDonated(donated){
+    this.moneyDonated = donated;
     this.moneyDonatedSource.next(donated)
   }
 

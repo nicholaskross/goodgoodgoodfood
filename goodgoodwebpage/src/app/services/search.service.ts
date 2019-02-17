@@ -17,7 +17,13 @@ export class SearchService {
 
   charitySearch(skuString: string){
     //may need to spit and add , to this string??
-    return this.http.get(`${environment.baseURL}/charity?skus=${skuString}`);
+    if (skuString == ""){
+
+      return this.http.get(`${environment.baseURL}/charity`);
+    } else{
+
+      return this.http.get(`${environment.baseURL}/charity?skus=${skuString}`);
+    }
   }
 
   getGeneric(searchString: string){
