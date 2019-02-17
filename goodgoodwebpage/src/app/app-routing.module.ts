@@ -4,7 +4,7 @@ import {CharitiesComponent} from "./components/charities/charities.component";
 import {HomeComponent} from "./components/home/home.component";
 
 const routes: Routes = [{
-  path: "charities/:values",
+  path: "charities",
   component: CharitiesComponent
 },{
   path: '',
