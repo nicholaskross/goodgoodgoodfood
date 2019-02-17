@@ -13,9 +13,7 @@
         </mat-grid-tile-header>
 
         <app-search-filter class="searchArea" (emitItem)="this.addToCart($event)"></app-search-filter>
-        <mat-grid-tile-footer>
-          Footer
-        </mat-grid-tile-footer>
+
 
       </mat-grid-tile>
       <mat-divider [vertical]="true"></mat-divider>
@@ -25,9 +23,6 @@
           Basket
         </mat-grid-tile-header>
         <app-cart [cart]="this.cart" [genericprods]="this.alternatives"></app-cart>
-        <mat-grid-tile-footer>
-          Footer
-        </mat-grid-tile-footer>
       </mat-grid-tile>
 
     </mat-grid-list>

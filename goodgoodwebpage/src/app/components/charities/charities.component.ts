@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {SearchService} from "../../services/search.service";
+import {ActivatedRoute} from "@angular/router";
 
 
 @Component({
@@ -8,22 +9,23 @@ import {SearchService} from "../../services/search.service";
   styleUrls: ['./charities.component.scss']
 })
 export class CharitiesComponent implements OnInit {
-  @Input() values;
-  skuString:String;
+  skuString: string;
 
-  constructor(private searchService: SearchService) {
-      for(let index in this.values){
-        if(this.values[0] == index){
-          this.skuString = index.sku;
-        }
-        this.skuString += ","+index.sku;
-      }
-      this.searchService.charitySearch(this.skuString).subscribe((data)=>{
+  constructor(private searchService: SearchService,private route: ActivatedRoute) {
 
-      });
   }
 
   ngOnInit() {
+      let values = this.route.snapshot.paramMap.get("values");
+    for(let index in values){
+      if(values[0] == index){
+        //this.skuString = index.sku;
+      }
+      //this.skuString += ","+index.sku;
+    }
+    this.searchService.charitySearch(this.skuString).subscribe((data)=>{
+
+    });
   }
 
 }
