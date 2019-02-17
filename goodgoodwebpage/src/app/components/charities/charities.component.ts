@@ -26,7 +26,7 @@ export class CharitiesComponent implements OnInit {
         }
       );
 
-      this.searchService.charitySearch(this.cart).subscribe(
+      this.searchService.charitySearch(this.skuString).subscribe(
         data=>{
           this.charities = data;
 
