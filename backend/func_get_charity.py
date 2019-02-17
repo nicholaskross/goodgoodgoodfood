@@ -1,6 +1,6 @@
 import requests
 
-def get_charity_name_and_url(shoppingCart):
+def get_charity_name_and_url(shoppingCart, pc):
     causes_table = {
         #Animals
         "Animal Rights, Welfare, and Services" : 2,
@@ -61,19 +61,52 @@ def get_charity_name_and_url(shoppingCart):
         "Religious Activities" : 26,
         "Religious Media and Broadcasting" :25}
 
-    weighting_tags = ["buyinginbulk", "eco"]
+    actual_items_info = []
+    for item in shoppingCart:
+        actual_items_info.append(pc.get_sku(item))
 
-    #INSERT SHOPPING CART TESTS
+    weighting_tags = []
+    if len(actual_items_info)>=10:
+        weighting_tags.append("buyinginbulk")
+    for food in shoppingCart:
+        if !("eco" not in food.description):
+            weighting_tags.append("eco")
+    for food in shoppingCart:
+        if !("kid" not in food.description):
+            weighting_tags.append("haschildren")
+    for food in shoppingCart:
+        if !("health" not in food.description):
+            weighting_tags.append("hasmedicalcondition")
+    seafoodcount = 0
+    for food in shoppingCart:
+        if !("fish" not in food.name && "salmon" not in food.name && "tilapia" not in food.name && "shrimp" not in food.name && "filet" not in food.name && "cod" not in food.name && "lobster" not in food.name && "crab" not in food.name):
+            seafoodcount+=1
+    if seafoodcount>=2:
+        weighting_tags.append("lotsofseafood")
+    vegan=True
+    if seafoodcount>0:
+        vegan = False
+    for food in shoppingCart:
+        if !("beef" not in food.description && "chicken" not in food.description && "pork" not in food.description && "bacon" not in food.description && "egg" not in food.description && "dairy" not in food.description && "veal" not in food.description):
+            vegan=False
+    if vegan:
+        weighting_tags.append("vegan")
+    #ethnicfoodcount = 0
+    #for food in shoppingCart:
+        #if food.countryOfOrigin != null:
+            #ethnicfoodcount+=1
+    #if ethnicfoodcount>=2:
+        #weighting_tags.append("ethnicfoods")
 
     correlates_table = {
         "vegan" : "Animal Rights, Welfare, and Services",
         "eco" : "Environmental Protection and Conservation",
         "haschildren" : "Children's and Family Services",
         "hasmedicalcondition" : "Medical Research",
-        "ethnicfoods" : "Humanitarian Relief Supplies",
         "buyinginbulk" : "Food Banks, Food Pantries, and Food Distribution",
         "lotsofseafood" : "Zoos and Aquariums",
         }
+    #"ethnicfoods" : "Humanitarian Relief Supplies",
 
     potential_causes = []
     final_cause = ""
