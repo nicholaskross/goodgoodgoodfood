@@ -22,7 +22,10 @@
         <mat-grid-tile-header>
           Basket
         </mat-grid-tile-header>
-        <app-cart [cart]="this.cart" [genericprods]="this.alternatives"></app-cart>
+        <app-cart class="cart-area" [money_saved]="this.money_saved" [cart]="this.cart" [genericprods]="this.alternatives"></app-cart>
+        <mat-grid-tile-footer>
+          Footer
+        </mat-grid-tile-footer>
       </mat-grid-tile>
 
     </mat-grid-list>

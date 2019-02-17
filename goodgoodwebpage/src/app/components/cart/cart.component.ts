@@ -8,7 +8,7 @@ import {SearchService} from "../../services/search.service";
 })
 export class CartComponent implements OnInit {
 
-  moneySaved: number;
+  @Input() money_saved;
   @Input() cart;
   @Input() genericprods;
 
@@ -18,11 +18,11 @@ export class CartComponent implements OnInit {
   }
 
   swapForGeneric(index){
-    console.log(this.cart[index].sku);
-    this.searchService.getGeneric(this.cart[index].sku).subscribe(
-      data => {
-        if(data != null){ this.cart[index] = data}},
-      error => {console.log(error)}
-    )
+    let sku = this.cart[index].sku;
+    if(this.genericprods[sku]){
+      let newprod = this.genericprods[sku];
+      this.money_saved[index] = this.cart[index].price - newprod.price;
+      this.cart[index] = newprod;
+    }
   }
 }
