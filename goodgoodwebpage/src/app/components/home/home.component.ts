@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SearchService} from "../../services/search.service";
 import {CharityService} from "../../services/charity.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -13,9 +14,8 @@ export class HomeComponent implements OnInit {
   cart = [];
   alternatives = {};
   money_saved = [];
-  
 
-  constructor(private searchService: SearchService, private charityService: CharityService) {
+  constructor(private searchService: SearchService, private charityService: CharityService, private router: Router) {
   }
 
   ngOnInit() {
@@ -59,6 +59,10 @@ export class HomeComponent implements OnInit {
       total+=x
     }
     return total
+  }
+
+  donate(){
+    this.router.navigate(["charities"])
   }
 
 }

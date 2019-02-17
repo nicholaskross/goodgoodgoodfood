@@ -24,7 +24,7 @@
         </mat-grid-tile-header>
         <app-cart class="cart-area" [money_saved]="this.money_saved" [cart]="this.cart" [genericprods]="this.alternatives"></app-cart>
         <mat-grid-tile-footer>
-          Total Donated: {{this.totalSaved() | currency}}  <button mat-raised-button style="margin-left: 5px" class="mat-raised-button">Choose Charity</button>
+          Total Donated: {{this.totalSaved() | currency}}  <button mat-raised-button (click)="this.donate()" style="margin-left: 5px" class="mat-raised-button">Choose Charity</button>
         </mat-grid-tile-footer>
       </mat-grid-tile>
 
