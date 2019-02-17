@@ -15,3 +15,5 @@ class Dictable(abc.ABC):
                     d[prop] = value.to_dict()
                 else:
                     d[prop] = value
+
+        return d

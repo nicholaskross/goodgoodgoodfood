@@ -13,18 +13,24 @@
 # limitations under the License.
 
 # [START gae_python37_app]
-from flask import Flask
 
+from flask import Flask, request, jsonify
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
 # called `app` in `main.py`.
+from backend.productcatalog import ProductCatalog
+from backend.wegmans_api import WegmansAPI
+
 app = Flask(__name__)
 
+prod_cat = ProductCatalog(WegmansAPI())
 
-@app.route('/')
+
+@app.route('/search', methods=["GET"])
 def hello():
-    """Return a friendly HTTP greeting."""
-    return 'Hello World!'
+    query = request.args.get("query")
+    result = prod_cat.search_query(query)
+    return jsonify([res.to_dict() for res in result])
 
 
 if __name__ == '__main__':

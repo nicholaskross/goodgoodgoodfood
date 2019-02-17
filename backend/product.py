@@ -11,5 +11,5 @@ class Product(Dictable):
         self.brand = brand
         self.image_url = image_url
         self.sku = sku
-        self.unit_price = ValueUnit(self.price / self.size.value, self.size.unit)
+        self.unit_price = ValueUnit(self.price / self.size.value, self.size.unit) if price else None
 
