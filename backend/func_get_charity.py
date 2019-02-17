@@ -19,6 +19,7 @@ class Charity(Dictable):
     def __init__(self, name, url):
         self.name = name
         self.url = url
+        self.description = ""
 
 
 def label_categories(food: Product):
