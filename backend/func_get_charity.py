@@ -8,7 +8,7 @@ from backend.product import Product
 from backend.productcatalog import ProductCatalog
 
 categories = {
-    "haschildren": ["jr", "jr.", "kid", "kids", "cereal", "fruit snacks", "fun size", "family"],
+    "haschildren": ["jr", "jr.", "kid", "kids", "cereal", "snack", "fun size", "family"],
     "eco": ["organic", "environmental"],
     "lotsofseafood": ["fish", "salmon", "tuna", "tilapia", "shrimp", "lobster", "crab", "cod", "fillet", "swordfish"],
     "vegan": ["vegetarian", "vegan", "dairy-free", "soy", "chick'n", "chik'n", ]
