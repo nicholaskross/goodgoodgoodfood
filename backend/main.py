@@ -27,10 +27,27 @@ prod_cat = ProductCatalog(WegmansAPI())
 
 
 @app.route('/search', methods=["GET"])
-def hello():
+def search():
     query = request.args.get("query")
     result = prod_cat.search_query(query)
     return jsonify([res.to_dict() for res in result])
+
+
+@app.route('/similar', methods=["GET"])
+def similar():
+    sku = int(request.args.get("sku"))
+    prod = prod_cat.get_sku(sku)
+    similar_products = [compprod for compprod in prod_cat.search_query(prod.description) if
+                        (prod.price / 4) < compprod.price < prod.price  # Cheaper but not so cheap that it's wrong
+                        and compprod.brand.strip().lower() in ["wegman", "wegman's", "wegmans"]]
+
+    if len(similar_products) == 0:
+        return "", 204
+
+    cheapest_price = min((similar_product.price for similar_product in similar_products))
+    cheapest_prod = [p for p in similar_products if p.price == cheapest_price][0]
+
+    return jsonify(cheapest_prod.to_dict())
 
 
 if __name__ == '__main__':
@@ -38,4 +55,4 @@ if __name__ == '__main__':
     # Engine, a webserver process such as Gunicorn will serve the app. This
     # can be configured by adding an `entrypoint` to app.yaml.
     app.run(host='127.0.0.1', port=8080, debug=True)
-# [END gae_python37_app]
+    # [END gae_python37_app]
