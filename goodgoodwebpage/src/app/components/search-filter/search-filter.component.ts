@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormGroup, FormControl} from "@angular/forms";
 import {debounceTime, distinctUntilChanged} from "rxjs/operators";
 import {SearchService} from "../../services/search.service";
@@ -9,6 +9,7 @@ import {SearchService} from "../../services/search.service";
   styleUrls: ['./search-filter.component.scss']
 })
 export class SearchFilterComponent implements OnInit {
+  @Output() emitItem: EventEmitter<any> = new EventEmitter();
   private form: FormGroup = new FormGroup({
     searchString: new FormControl('', [
     ])
@@ -42,6 +43,11 @@ export class SearchFilterComponent implements OnInit {
 
   get searchString(){
     return this.form.get('searchString')
+  }
+
+  addToCart(index){
+    console.log(this.searchResults[index]);
+    this.emitItem.emit(this.searchResults[index])
   }
 
 

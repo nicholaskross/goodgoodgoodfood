@@ -9,7 +9,7 @@ import {
   MatExpansionModule, MatFormFieldModule,
   MatGridListModule, MatInputModule,
   MatToolbarModule,
-  MatListModule
+  MatListModule, MatButtonModule
 } from "@angular/material";
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SearchFilterComponent } from './components/search-filter/search-filter.component';
@@ -42,7 +42,8 @@ import {HttpClientModule} from "@angular/common/http";
     FormsModule,
     ReactiveFormsModule,
     MatListModule,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

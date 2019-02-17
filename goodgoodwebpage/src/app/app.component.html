@@ -17,7 +17,7 @@
           Search
         </mat-grid-tile-header>
 
-        <app-search-filter style="overflow: scroll"></app-search-filter>
+        <app-search-filter class="searchArea" (emitItem)="addToCart($event)"></app-search-filter>
         <mat-grid-tile-footer>
           Footer
         </mat-grid-tile-footer>
@@ -29,7 +29,7 @@
         <mat-grid-tile-header>
           Basket
         </mat-grid-tile-header>
-        <app-cart></app-cart>
+        <app-cart [cart]="cart"></app-cart>
         <mat-grid-tile-footer>
           Footer
         </mat-grid-tile-footer>

@@ -1,11 +1,16 @@
 <form>
-  <mat-form-field>
+  <mat-form-field class="input">
     <input matInput placeholder="Search for Items" type="text" [formControl]="searchString">
   </mat-form-field>
 </form>
 <mat-list>
-  <mat-list-item *ngFor="let result of this.searchResults">
-  {{result}}
-  <mat-divider></mat-divider>
+  <mat-list-item *ngFor="let result of this.searchResults; let i = index">
+    <img src={{result.image_url}} alt="Food" class="thumbnail">
+    {{result.name}}   {{result.size.value}} {{result.size.unit}} {{result.price}}
+
+    <div class="spacer">
+    </div>
+    <button mat-raised-button (click)="addToCart(i)">Add To Cart</button>
+    <mat-divider></mat-divider>
   </mat-list-item>
 </mat-list>
