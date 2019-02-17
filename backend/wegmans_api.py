@@ -46,8 +46,9 @@ class WegmansAPI(GroceryAPI):
                 if "price" in result_prices:
                     price = result_prices["price"]
 
-                return Product(sku, image, result["brand"], result["descriptions"]["consumer"], price, size)
-            except:
+                return Product(sku, image, result["brand"], result["descriptions"]["consumer"], price, size, result["name"])
+            except Exception as e:
+                print(e)
                 return None
 
         return tpexec.submit(process_detail)
@@ -64,7 +65,7 @@ class WegmansAPI(GroceryAPI):
             resp_result: Dict = json.loads(resp.result().content)
 
             if "results" in resp_result and isinstance(resp_result["results"], List):
-                skus = [product["sku"] for product in resp_result["results"]][:50]
+                skus = [product["sku"] for product in resp_result["results"]][:25]
             else:
                 skus = []
 
