@@ -1,4 +1,4 @@
-.padding{
+.padding {
   margin: 6px;
 }
 
@@ -12,6 +12,12 @@
 
 .price {
   color: darkred;
+}
+
+button {
+  .price {
+    color: #4caf50;
+  }
 }
 
 .donated {
