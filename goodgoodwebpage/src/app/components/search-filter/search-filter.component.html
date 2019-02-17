@@ -4,7 +4,7 @@
   </mat-form-field>
 </form>
 <mat-list>
-  <mat-list-item *ngFor="let result of this.searchResults; let i = index">
+  <mat-list-item *ngFor="let result of this.searchResults; let i = index" class="sized-height">
     <img src={{result.image_url}} alt="Food" class="thumbnail">
     {{result.name}}   {{result.size.value}} {{result.size.unit}}
 

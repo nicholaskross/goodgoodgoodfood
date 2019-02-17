@@ -17,10 +17,11 @@
 
 .thumbnail{
   width: 100px;
-  height: 100px;
+  height: 100%;
+  object-fit: contain;
 }
 .rowItem{
-  height: 100px;
+  height: 200px;
   width: auto;
 }
 
@@ -39,3 +40,6 @@
   color: darkred;
 }
 
+.sized-height {
+  height: 100px !important;
+}
