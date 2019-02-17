@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   cart = [];
   alternatives = {};
   money_saved = [];
-  totalSaved;
+  
 
   constructor(private searchService: SearchService, private charityService: CharityService) {
   }

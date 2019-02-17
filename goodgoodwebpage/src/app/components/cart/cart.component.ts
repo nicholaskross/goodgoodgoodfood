@@ -24,7 +24,7 @@ export class CartComponent implements OnInit {
       let newprod = this.genericprods[sku];
       this.money_saved[index] = this.cart[index].price - newprod.price;
       this.cart[index] = newprod;
-      this.charityService.changeAmountedDonated(this.money_saved);
+      this.charityService.changeAmountedDonated(this.totalSaved());
       this.charityService.changeCart(this.createSKUString());
 
     }
@@ -40,5 +40,13 @@ export class CartComponent implements OnInit {
       }
     }
     return skuCSV
+  }
+
+  totalSaved(){
+    let total =0;
+    for(let x of this.money_saved){
+      total+=x
+    }
+    return total
   }
 }
