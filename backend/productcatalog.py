@@ -23,7 +23,7 @@ class ProductCatalog:
         self.ensure_search(query)
         return [self.skus[prod] for prod in self.search_queries[query]]
 
-    def get_sku(self, sku: int):
+    def get_sku(self, sku: int) -> Product:
         self.ensure_sku(sku)
         return self.skus[sku]
 
