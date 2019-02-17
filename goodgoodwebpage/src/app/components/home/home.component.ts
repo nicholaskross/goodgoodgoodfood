@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   cart = [];
   alternatives = {};
   money_saved = [];
+  totalSaved;
 
   constructor(private searchService: SearchService, private charityService: CharityService) {
   }
@@ -50,6 +51,14 @@ export class HomeComponent implements OnInit {
       }
     }
     return skuCSV
+  }
+
+  totalSaved(){
+    let total =0;
+    for(let x of this.money_saved){
+      total+=x
+    }
+    return total
   }
 
 }
