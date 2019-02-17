@@ -15,7 +15,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SearchFilterComponent } from './components/search-filter/search-filter.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {CartComponent} from "./components/cart/cart.component";
-import {ItemComponent} from "./components/cart/item/item.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 
@@ -26,7 +25,6 @@ import {HttpClientModule} from "@angular/common/http";
     SearchFilterComponent,
     NavbarComponent,
     CartComponent,
-    ItemComponent
   ],
   imports: [
     BrowserModule,

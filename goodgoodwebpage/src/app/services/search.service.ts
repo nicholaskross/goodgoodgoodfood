@@ -14,4 +14,9 @@ export class SearchService {
     console.log(searchString);
     return this.http.get(`${environment.baseURL}/search?query=${searchString}`);
   }
+
+  getGeneric(searchString: string){
+    console.log(searchString);
+    return this.http.get(`${environment.baseURL}/similar?sku=${searchString}`)
+  }
 }
