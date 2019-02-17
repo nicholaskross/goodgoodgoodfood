@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {SearchService} from "../../services/search.service";
 
 @Component({
   selector: 'app-home',
@@ -9,13 +10,29 @@ export class HomeComponent implements OnInit {
   title = 'Charity Cart';
 
   cart = [];
-  constructor() { }
+  alternatives = {};
+
+  constructor(private searchService: SearchService) {
+  }
 
   ngOnInit() {
   }
 
-  addToCart(item){
-    this.cart.push(item)
+  fetchAlternatives(sku: string) {
+    console.log("search for " + sku);
+    this.searchService.getGeneric(sku).subscribe(genericprod => {
+      if (genericprod) {
+        this.alternatives[sku] = genericprod;
+        console.log("found ");
+        console.log(genericprod);
+      }
+    });
+
+  }
+
+  addToCart(item) {
+    this.cart.push(item);
+    this.fetchAlternatives(item.sku);
   }
 
 }

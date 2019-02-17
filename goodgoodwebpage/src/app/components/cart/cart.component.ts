@@ -10,6 +10,7 @@ export class CartComponent implements OnInit {
 
   moneySaved: number;
   @Input() cart;
+  @Input() genericprods;
 
   constructor(private searchService: SearchService) { }
 
