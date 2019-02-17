@@ -11,7 +11,7 @@ categories = {
     "haschildren": ["jr", "jr.", "kid", "kids", "cereal", "snack", "fun size", "family"],
     "eco": ["organic", "environmental"],
     "lotsofseafood": ["fish", "salmon", "tuna", "tilapia", "shrimp", "lobster", "crab", "cod", "fillet", "swordfish"],
-    "vegan": ["vegetarian", "vegan", "dairy-free", "soy", "chick'n", "chik'n", ]
+    "vegan": ["vegetarian", "vegan", "dairy-free", "soy", "chick'n", "chik'n"]
 }
 
 
