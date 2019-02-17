@@ -18,3 +18,13 @@ __pycache__/
 venv/
 # Ignored by the build system
 /setup.cfg
+
+# compiled output
+/goodgoodwebpage/dist
+/goodgoodwebpage/tmp
+/goodgoodwebpage/out-tsc
+
+# dependencies
+/goodgoodwebpage/node_modules
+
+/.idea

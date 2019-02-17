@@ -2,7 +2,10 @@ from backend.main import app as backend
 import os
 
 from flask import Flask
+from flask_cors import CORS
+
 app = Flask(__name__)
+CORS(app)
 app.register_blueprint(backend)
 
 if __name__ == '__main__':
