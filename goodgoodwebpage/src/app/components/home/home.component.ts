@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SearchService} from "../../services/search.service";
+import {CharityService} from "../../services/charity.service";
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ export class HomeComponent implements OnInit {
   cart = [];
   alternatives = {};
 
-  constructor(private searchService: SearchService) {
+  constructor(private searchService: SearchService, private charityService: CharityService) {
   }
 
   ngOnInit() {
@@ -33,6 +34,20 @@ export class HomeComponent implements OnInit {
   addToCart(item) {
     this.cart.push(item);
     this.fetchAlternatives(item.sku);
+    this.charityService.changeCart(this.createSKUString())
+  }
+
+  createSKUString(){
+    skuCSV = '';
+    for(let x = 0; x < cart.length; x++){
+      if(x == 0){
+        skuCSV = cart[x].sku
+      }
+      else{
+        skuCSV += ',' + cart[x].sku
+      }
+    }
+    return skuCSV
   }
 
 }

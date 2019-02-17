@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {SearchService} from "../../services/search.service";
+import {CharityService} from "../../services/charity.service";
 
 
 @Component({
@@ -8,17 +9,26 @@ import {SearchService} from "../../services/search.service";
   styleUrls: ['./charities.component.scss']
 })
 export class CharitiesComponent implements OnInit {
-  @Input() values;
-  skuString:String;
+  cart: any ;
+  moneySaved;
+  skuString: string;
+  charities;
 
-  constructor(private searchService: SearchService) {
-      for(let index in this.values){
-        if(this.values[0] == index){
-          this.skuString = index.sku;
+  constructor(private searchService: SearchService, private charityService: CharityService) {
+      charityService.cartItems$.subscribe(
+        data =>{
+          this.cart = data;
         }
-        this.skuString += ","+index.sku;
-      }
-      this.searchService.charitySearch(this.skuString).subscribe((data)=>{
+      );
+      this.charityService.moneyDonated$.subscribe(
+        data =>{
+          this.moneySaved = data;
+        }
+      );
+
+      this.searchService.charitySearch(this.cart).subscribe(
+        data=>{
+          this.charities = data;
 
       });
   }
