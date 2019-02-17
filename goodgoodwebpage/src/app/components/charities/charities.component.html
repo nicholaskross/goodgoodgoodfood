@@ -1,34 +1,8 @@
 <h1>Donate {{this.moneySaved | currency}} to a Charity of your Choice!</h1>
 
-
-
-<mat-card>
-  <mat-card-title>This is for a charity</mat-card-title>
-  <mat-card-subtitle>Description of the charity</mat-card-subtitle>
-  <button> Learn more and Donate </button>
-</mat-card>
-
-<mat-card>
-  <mat-card-title>This is for a charity</mat-card-title>
-  <mat-card-subtitle>Description of the charity</mat-card-subtitle>
-  <button> Learn more and Donate </button>
-</mat-card>
-
-<mat-card>
-  <mat-card-title>This is for a charity</mat-card-title>
-  <mat-card-subtitle>Description of the charity</mat-card-subtitle>
-  <button> Learn more and Donate </button>
-</mat-card>
-
-<mat-card>
-  <mat-card-title>This is for a charity</mat-card-title>
-  <mat-card-subtitle>Description of the charity</mat-card-subtitle>
-  <button> Learn more and Donate </button>
-</mat-card>
-
-<mat-card>
-  <mat-card-title>This is for a charity</mat-card-title>
-  <mat-card-subtitle>Description of the charity</mat-card-subtitle>
-  <button> Learn more and Donate </button>
+<mat-card *ngFor="let item of charities">
+  <mat-card-title>{{item.name}}</mat-card-title>
+  <mat-card-subtitle>{{item.description}}</mat-card-subtitle>
+  <a href="{{item.url}}"><button> Learn more and Donate </button></a>
 </mat-card>
 
