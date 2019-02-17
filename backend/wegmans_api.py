@@ -28,21 +28,27 @@ class WegmansAPI(GroceryAPI):
             params=self.default_params)
 
         def process_detail():
-            sleep(.01)
-            result: Dict = json.loads(resp.result().content)
-            result_prices: Dict = json.loads(resp_prices.result().content)
+            try:
+                sleep(.01)
+                result: Dict = json.loads(resp.result().content)
+                result_prices: Dict = json.loads(resp_prices.result().content)
 
-            trade_id = result["tradeIdentifiers"]
-            image = None
-            if isinstance(trade_id, List) and len(trade_id) > 0:
-                tid0 = trade_id[0]
-                if isinstance(tid0["images"], List) and len(tid0["images"]) > 0:
-                    image = tid0["images"][0]
+                trade_id = result["tradeIdentifiers"]
+                image = None
+                if isinstance(trade_id, List) and len(trade_id) > 0:
+                    tid0 = trade_id[0]
+                    if isinstance(tid0["images"], List) and len(tid0["images"]) > 0:
+                        image = tid0["images"][0]
 
-            size = ValueUnit(result["size"]["value"], result["size"]["unitOfMeasure"])
+                size = ValueUnit(result["size"]["value"], result["size"]["unitOfMeasure"])
 
-            return Product(sku, image, result["brand"], result["descriptions"]["consumer"], result_prices["price"],
-                           size)
+                price = None
+                if "price" in result_prices:
+                    price = result_prices["price"]
+
+                return Product(sku, image, result["brand"], result["descriptions"]["consumer"], price, size)
+            except:
+                return None
 
         return tpexec.submit(process_detail)
 
@@ -58,12 +64,14 @@ class WegmansAPI(GroceryAPI):
             resp_result: Dict = json.loads(resp.result().content)
 
             if "results" in resp_result and isinstance(resp_result["results"], List):
-                skus = [product["sku"] for product in resp_result["results"]][:10]
+                skus = [product["sku"] for product in resp_result["results"]][:50]
             else:
                 skus = []
 
             products_futures = [self.get_sku(sku) if sku not in cache else cache[sku] for sku in skus]
             products = [fut.result() if isinstance(fut, Future) else fut for fut in products_futures]
+            products = [product for product in products
+                        if product and product.price]  # If we don't have a price, it's not sold at the specific store
 
             return products
 
@@ -71,7 +79,7 @@ class WegmansAPI(GroceryAPI):
 
     def __init__(self):
         self.sess = FuturesSession(tpexec)
-        with open("backend/config.json") as f:
+        with open("config.json") as f:
             config = json.load(f)
 
         self.store_id = 62
@@ -80,4 +88,3 @@ class WegmansAPI(GroceryAPI):
             "Subscription-Key": config["WEGMANS_KEY"],
             "api-version": "2018-10-18"
         }
-

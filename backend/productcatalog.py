@@ -11,7 +11,7 @@ class ProductCatalog:
             products = self.api.get_search(query, self.skus).result()
             self.search_queries[query] = [product.sku for product in products]
             for product in products:
-                if product.sku in self.skus:
+                if product.sku not in self.skus:
                     self.skus[product.sku] = product
 
     def ensure_sku(self, sku: int):
