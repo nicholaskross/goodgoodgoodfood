@@ -14,4 +14,9 @@ export class SearchService {
     console.log(searchString);
     return this.http.get(`${environment.baseURL}/search?query=${searchString}`);
   }
+
+  charitySearch(skuString: string){
+    //may need to spit and add , to this string??
+    return this.http.get(`${environment.baseURL}/charity?skus=${skuString}`);
+  }
 }
