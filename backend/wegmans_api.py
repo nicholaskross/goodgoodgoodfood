@@ -80,7 +80,7 @@ class WegmansAPI(GroceryAPI):
 
     def __init__(self):
         self.sess = FuturesSession(tpexec)
-        with open("config.json") as f:
+        with open("backend/config.json") as f:
             config = json.load(f)
 
         self.store_id = 62

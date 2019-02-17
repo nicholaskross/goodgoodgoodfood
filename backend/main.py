@@ -14,14 +14,15 @@
 
 # [START gae_python37_app]
 
-from flask import Flask, request, jsonify
+from flask import Blueprint, request, jsonify
+import os
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
 # called `app` in `main.py`.
 from backend.productcatalog import ProductCatalog
 from backend.wegmans_api import WegmansAPI
 
-app = Flask(__name__)
+app = Blueprint("backend", __name__)
 
 prod_cat = ProductCatalog(WegmansAPI())
 
@@ -50,9 +51,4 @@ def similar():
     return jsonify(cheapest_prod.to_dict())
 
 
-if __name__ == '__main__':
-    # This is used when running locally only. When deploying to Google App
-    # Engine, a webserver process such as Gunicorn will serve the app. This
-    # can be configured by adding an `entrypoint` to app.yaml.
-    app.run(host='127.0.0.1', port=8080, debug=True)
-    # [END gae_python37_app]
+
