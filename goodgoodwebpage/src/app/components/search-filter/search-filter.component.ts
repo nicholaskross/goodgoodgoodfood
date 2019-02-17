@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl} from "@angular/forms";
-import {Observable} from "rxjs";
-import {map, startWith} from "rxjs/operators";
+import {FormGroup, FormControl} from "@angular/forms";
+import {debounceTime, distinctUntilChanged} from "rxjs/operators";
+
 
 @Component({
   selector: 'app-search-filter',
@@ -9,27 +9,30 @@ import {map, startWith} from "rxjs/operators";
   styleUrls: ['./search-filter.component.scss']
 })
 export class SearchFilterComponent implements OnInit {
-  toppings = new FormControl();
-  toppingList:string[];
-  myControl = new FormControl();
-  options: string[] = ['One', 'Two', 'Three'];
-  filteredOptions: Observable<string[]>;
+  private form: FormGroup = new FormGroup({
+    searchString: new FormControl('', [
+    ])
+  });
 
 
 
   constructor() { }
 
   ngOnInit() {
-    this.toppingList = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
-    this.filteredOptions = this.myControl.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this._filter(value))
-      );
-  }
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
 
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+    this.searchString.valueChanges
+      .pipe(
+        debounceTime(400),
+        distinctUntilChanged()
+      ).subscribe((value:string) => {
+        console.log(value)
+    })
   }
+
+  get searchString(){
+    return this.form.get('searchString')
+  }
+
+
+
 }
