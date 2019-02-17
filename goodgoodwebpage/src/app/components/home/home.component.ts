@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   title = 'Charity Cart';
+
+  cart = [];
   constructor() { }
 
   ngOnInit() {
+  }
+
+  addToCart(item){
+    this.cart.push(item)
   }
 
 }
