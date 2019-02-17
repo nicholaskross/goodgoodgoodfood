@@ -18,6 +18,8 @@ import {CartComponent} from "./components/cart/cart.component";
 import {ItemComponent} from "./components/cart/item/item.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { CharitiesComponent } from './components/charities/charities.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import {HttpClientModule} from "@angular/common/http";
     SearchFilterComponent,
     NavbarComponent,
     CartComponent,
-    ItemComponent
+    ItemComponent,
+    CharitiesComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
