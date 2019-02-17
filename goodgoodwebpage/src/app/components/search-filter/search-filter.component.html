@@ -6,10 +6,13 @@
 <mat-list>
   <mat-list-item *ngFor="let result of this.searchResults; let i = index">
     <img src={{result.image_url}} alt="Food" class="thumbnail">
-    {{result.name}}   {{result.size.value}} {{result.size.unit}} {{result.price}}
+    {{result.name}}   {{result.size.value}} {{result.size.unit}}
 
-    <div class="spacer">
-    </div>
+    <div class="spacer"></div>
+    <span class="price">
+      {{result.price | currency }}
+    </span>
+    <div class="smallspacer"></div>
     <button mat-raised-button (click)="addToCart(i)">Add To Cart</button>
     <mat-divider></mat-divider>
   </mat-list-item>
