@@ -24,7 +24,7 @@ export class CartComponent implements OnInit {
       let newprod = this.genericprods[sku];
       this.money_saved[index] = this.cart[index].price - newprod.price;
       this.cart[index] = newprod;
-      this.charityService.changeAmountedDonated(this.moneySaved);
+      this.charityService.changeAmountedDonated(this.money_saved);
       this.charityService.changeCart(this.createSKUString());
 
     }
