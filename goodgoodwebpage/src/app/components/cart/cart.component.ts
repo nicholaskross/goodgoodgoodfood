@@ -9,7 +9,7 @@ import {CharityService} from "../../services/charity.service";
 })
 export class CartComponent implements OnInit {
 
-  moneySaved: number;
+  @Input() money_saved;
   @Input() cart;
   @Input() genericprods;
 
@@ -22,7 +22,7 @@ export class CartComponent implements OnInit {
     let sku = this.cart[index].sku;
     if(this.genericprods[sku]){
       let newprod = this.genericprods[sku];
-      this.moneySaved += this.cart[index].price - newprod.price;
+      this.money_saved[index] = this.cart[index].price - newprod.price;
       this.cart[index] = newprod;
       this.charityService.changeAmountedDonated(this.moneySaved);
       this.charityService.changeCart(createSKUString());

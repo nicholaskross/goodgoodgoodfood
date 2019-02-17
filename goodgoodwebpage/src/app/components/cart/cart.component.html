@@ -3,6 +3,10 @@
     {{item.name}}
 
     <div class="spacer"></div>
+    <div *ngIf="money_saved[i]>0">
+      <span class="donated">(donated <span class="price">{{money_saved[i] | currency}}</span>)</span>
+    </div>
+
     <div *ngIf="genericprods[item.sku]">
        <button mat-raised-button (click)="swapForGeneric(i)">
          Donate <span class="price">{{ item.price - genericprods[item.sku].price | currency}}</span>
