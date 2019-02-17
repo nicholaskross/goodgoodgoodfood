@@ -7,10 +7,21 @@
 }
 
 .smallspacer {
-  width: 25px;
-  margin-right: 25px;
+  margin-right: 16px;
 }
 
 .price {
   color: darkred;
 }
+
+.donated {
+  color: darkgray;
+  margin-right: 16px;
+  font-style: italic;
+
+  .price {
+    color: #4caf50;
+  }
+}
+
+

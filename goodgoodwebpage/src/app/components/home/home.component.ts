@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
 
   cart = [];
   alternatives = {};
+  money_saved = [];
 
   constructor(private searchService: SearchService) {
   }
@@ -32,6 +33,7 @@ export class HomeComponent implements OnInit {
 
   addToCart(item) {
     this.cart.push(item);
+    this.money_saved.push(0);
     this.fetchAlternatives(item.sku);
   }
 
