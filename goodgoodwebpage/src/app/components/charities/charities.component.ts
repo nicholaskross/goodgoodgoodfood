@@ -12,7 +12,7 @@ export class CharitiesComponent implements OnInit {
   skuString:String;
 
   constructor(private searchService: SearchService) {
-      for(let index in this.values){
+      /*for(let index in this.values){
         if(this.values[0] == index){
           this.skuString = index.sku;
         }
@@ -20,7 +20,7 @@ export class CharitiesComponent implements OnInit {
       }
       this.searchService.charitySearch(this.skuString).subscribe((data)=>{
 
-      });
+      });*/
   }
 
   ngOnInit() {
