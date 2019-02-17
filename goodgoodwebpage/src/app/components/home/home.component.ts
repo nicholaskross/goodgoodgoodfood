@@ -40,13 +40,13 @@ export class HomeComponent implements OnInit {
   }
 
   createSKUString(){
-    skuCSV = '';
-    for(let x = 0; x < cart.length; x++){
+    let skuCSV = '';
+    for(let x = 0; x < this.cart.length; x++){
       if(x == 0){
-        skuCSV = cart[x].sku
+        skuCSV = this.cart[x].sku
       }
       else{
-        skuCSV += ',' + cart[x].sku
+        skuCSV += ',' + this.cart[x].sku
       }
     }
     return skuCSV
